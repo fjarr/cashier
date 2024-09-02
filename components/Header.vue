@@ -15,9 +15,6 @@
         <nuxt-link to="/statistik/"><h5 style="color:black;">STATISTIK</h5></nuxt-link>
         </li>
       </ul>
-      <form  class="d-flex me-5">
-        <input  class="form-control rounded-5 " type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" style=" padding-left: 40px; padding-right: 400px; ">
-      </form>
     </div>
   </div>
 </nav>
