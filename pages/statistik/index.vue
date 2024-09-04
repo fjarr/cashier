@@ -57,6 +57,9 @@
         </div>
     </div>
 </template>
+<script setup>
+useHead({ title: "STATISTIK" })
+</script>
 <style scoped>
 .card {
     background-color: #FF8000;
