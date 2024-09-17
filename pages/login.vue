@@ -13,7 +13,6 @@
                         <div class="mb-4 px-5">
                             <input v-model="password" type="password" class="form-control rounded-5" placeholder="Password .......">
                         </div>
-                        <em v-if="loading">sedang mengirim...</em>
                         <button type="submit" class="btn mb-5 px-5 rounded-5" style="background-color: white;">LOGIN</button>
                     </form>
                 </div>
@@ -30,17 +29,18 @@ definePageMeta({
 const supabase = useSupabaseClient()
 const email = ref("")
 const password = ref("")
-const loading = ref(false)
 
 const Login = async () => {
-    loading.value = true
     const { data, error } = await supabase.auth.signInWithPassword({
         email: email.value,
         password: password.value,
     })
     if (data) {
-        loading.value = false
         navigateTo("/")
+    }
+    else(console.error());
+    {
+        alert("password atau email anda salah")
     }
 }
 </script>
