@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" id="u">
     <div class="row my-5 justify-content-around">
-      <div class="col-5 mb-2">
+      <div class="col-lg-5 mb-2">
         <div class="title-hari mx-5">
           <h2>HARI INI</h2>
         </div>
@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <div class="col-5 mb-2">
+      <div class="col-lg-5 mb-2">
         <div class="title-bulan mx-5">
           <h2>BULANAN INI</h2>
         </div>
@@ -28,7 +28,7 @@
       <table class="table table-bordered">
         <thead>
           <tr class="fw-bold">
-            <th style="width: 6%;">NO</th>
+            <th style="width: 6%">NO</th>
             <th>TANGGAL</th>
             <th>JUMLAH OMZET</th>
           </tr>
@@ -53,10 +53,8 @@ const totalBulanIni = ref(0);
 
 const Statistiks = async () => {
   try {
-    const { data, error } = await supabase
-      .from('statistik').select('*')
-      .order("id", { ascending: false });
-      
+    const { data, error } = await supabase.from('statistik').select('*').order('id', { ascending: false });
+
     if (error) {
       console.error(error);
       return;
@@ -72,13 +70,9 @@ const updateTotals = () => {
   const today = new Date().toISOString().split('T')[0];
   const month = new Date().toISOString().split('-').slice(0, 2).join('-');
 
-  totalHariIni.value = Statistik.value
-    .filter(item => item.date === today)
-    .reduce((sum, item) => sum + item.total, 0);
+  totalHariIni.value = Statistik.value.filter((item) => item.date === today).reduce((sum, item) => sum + item.total, 0);
 
-  totalBulanIni.value = Statistik.value
-    .filter(item => item.date.startsWith(month))
-    .reduce((sum, item) => sum + item.total, 0);
+  totalBulanIni.value = Statistik.value.filter((item) => item.date.startsWith(month)).reduce((sum, item) => sum + item.total, 0);
 };
 
 onMounted(() => {
@@ -88,7 +82,7 @@ onMounted(() => {
 
 <style scoped>
 .card {
-  background-color: #FF8000;
+  background-color: #ff8000;
 }
 
 h3 {
@@ -96,16 +90,23 @@ h3 {
   font-size: 70px;
   margin-bottom: 18px;
 }
+#u{
+    margin-top: 10%;
 
-@media (max-width: 820px) {
+}
+.present {
+  margin: 0 8%;
+}
+@media (max-width: 920px) {
   h3 {
     margin-top: 5px;
     font-size: 40px;
     margin-bottom: 5px;
   }
+  #u{
+        margin-top: 27%;
+    }
 }
 
-.present {
-  margin: 0 8%;
-}
+
 </style>

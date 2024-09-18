@@ -22,8 +22,13 @@
 </template>
 <style scoped>
 .navbar{
+  z-index: 1;
   font-family: inter;
-  background-color: #c78800;
+  background-color: #c78800; 
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  top: 0;
 }
 </style>
 
