@@ -1,10 +1,11 @@
 <template>
+  <div class="bg">
   <div class="container-fluid">
     <div class="row mt-1">
       <div class="col-12 col-lg-8 col-md-8 col-sm-12 my-4">
         <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-4" id="ic">
+          <i @click="toggleCart" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
           <input v-model="keyword" class="form-control rounded-pill" type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" />
-          <i @click="toggleCart" class="bi bi-cart-check ms-2" id="c" style="font-size: 30px"></i>
         </form>
         <div class="row">
           <div class="col-12 col-lg-4 col-md-6 col-sm-12 mb-4" v-for="(menu, i) in Menu" :key="i">
@@ -29,17 +30,16 @@
       </div>
     </div>
   </div>
-  <div class="cart" :style="{ right: cartVisible ? '0%' : '-70%' }">
-    <h2><b>CART</b></h2>
+  <div class="cart ps-3 rounded-5" :style="{ right: cartVisible ? '0%' : '-100%' }">
     <div class="order-summary mt-4" style="width: 90%; height: 80%">
       <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
-        <div class="card-body" style="font-size: 120%">
+        <div class="card-body" id="ct">
           <b>
-            <div class="container">
-              <div class="row item-row align-items-center px-2">
-                <div class="col-6 text-start">{{ item.produk }}</div>
+            <div class="container px-3">
+              <div class="row item-row align-items-center px-1">
+                <div class="col-5 text-center">{{ item.produk }}</div>
                 <div class="col-4 text-center">{{ item.quantity }}</div>
-                <div class="col-2 text-end">
+                <div class="col-3 text-center">
                   <button @click="hapusitem(index)" class="btn btn-trash" aria-label="Delete item">
                     <i class="bi bi-trash-fill"></i>
                   </button>
@@ -60,6 +60,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script setup>
@@ -128,47 +129,39 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.bg{
+  background-image: url(~/assets/img/bgm2.png);
+}
 .cart {
   width: 30vw;
   height: 100vh;
   display: flex;
   position: fixed;
-  top: 13%;
-  right: 0; /* Always visible */
+  top: 15%;
+  right: 0; 
   background-color: white;
   padding: 10px;
   transition: right 0.3s;
 }
+
 
 #or {
   width: 100%;
   background-color: #c78800;
 }
 
-#ic {
-  margin-top: 10%;
-}
-
-@media (max-width: 820px) {
+@media (max-width: 520px) {
   .cart {
     text-align: center;
-    width: 50vw;
-    top: 12%;
-    font-size: 20px;
+    width: 100vw;
+    top: 20%;
+    font-size: 15px;
   }
   .img {
     display: none;
   }
-  .cart .container {
-    height: 40px;
-    font-size: small;
-  }
   #or {
-    background-color: rgb(146, 101, 2);
-  }
-  #ic {
-    margin-top: 27%;
-    text-align: center;
+    background-color: #c78800;
   }
 }
 </style>

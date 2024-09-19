@@ -90,9 +90,8 @@ h3 {
   font-size: 70px;
   margin-bottom: 18px;
 }
-#u{
-    margin-top: 10%;
-
+#u {
+  margin-top: 10%;
 }
 .present {
   margin: 0 8%;
@@ -103,10 +102,8 @@ h3 {
     font-size: 40px;
     margin-bottom: 5px;
   }
-  #u{
-        margin-top: 27%;
-    }
+  #u {
+    margin-top: 27%;
+  }
 }
-
-
 </style>
