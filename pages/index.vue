@@ -134,34 +134,27 @@ onMounted(() => {
   display: flex;
   position: fixed;
   top: 13%;
-  right: -70%;
+  right: 0; /* Always visible */
   background-color: white;
   padding: 10px;
   transition: right 0.3s;
 }
+
 #or {
   width: 100%;
   background-color: #c78800;
 }
+
 #ic {
   margin-top: 10%;
 }
-@media (min-width: 820px) {
-  #c {
-    display: none;
-  }
-}
+
 @media (max-width: 820px) {
   .cart {
     text-align: center;
     width: 50vw;
-    display: flex;
-    position: fixed;
     top: 12%;
     font-size: 20px;
-  }
-  .card .rounded-5 .shadow .mb-2 {
-    height: 10px;
   }
   .img {
     display: none;
