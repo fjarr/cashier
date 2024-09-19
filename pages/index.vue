@@ -1,66 +1,66 @@
 <template>
   <div class="bg">
-  <div class="container-fluid">
-    <div class="row mt-1">
-      <div class="col-12 col-lg-8 col-md-8 col-sm-12 my-4">
-        <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-4" id="ic">
-          <i @click="toggleCart" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
-          <input v-model="keyword" class="form-control rounded-pill" type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" />
-        </form>
-        <div class="row">
-          <div class="col-12 col-lg-4 col-md-6 col-sm-12 mb-4" v-for="(menu, i) in Menu" :key="i">
-            <div class="card shadow rounded-4">
-              <div class="img p-2">
-                <img :src="menu.cover" class="card-img-top rounded-3" alt="cover" style="height: 150px; object-fit: cover" />
-              </div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between mb-2">
-                  <div class="font-weight-bold">
-                    <b>{{ menu.produk }}</b>
-                  </div>
-                  <div>{{ menu.harga }}</div>
+    <div class="container-fluid">
+      <div class="row mt-1">
+        <div class="col-12 col-lg-8 col-md-8 col-sm-12 my-4">
+          <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-4" id="ic">
+            <i @click="toggleCart" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
+            <input v-model="keyword" class="form-control rounded-pill" type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" />
+          </form>
+          <div class="row">
+            <div class="col-12 col-lg-4 col-md-6 col-sm-12 mb-4" v-for="(menu, i) in Menu" :key="i">
+              <div class="card shadow rounded-4">
+                <div class="img p-2">
+                  <img :src="menu.cover" class="card-img-top rounded-3" alt="cover" style="height: 150px; object-fit: cover" />
                 </div>
-                <button @click="tambapesanan(menu)" class="btn rounded-4" style="background-color: #c78800; width: 95%">
-                  <i class="bi bi-cart mx-4"></i>
-                </button>
+                <div class="card-body">
+                  <div class="d-flex justify-content-between mb-2">
+                    <div class="font-weight-bold">
+                      <b>{{ menu.produk }}</b>
+                    </div>
+                    <div>{{ menu.harga }}</div>
+                  </div>
+                  <button @click="tambapesanan(menu)" class="btn rounded-4" style="background-color: #c78800; width: 95%">
+                    <i class="bi bi-cart mx-4"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="cart ps-3 rounded-5" :style="{ right: cartVisible ? '0%' : '-100%' }">
-    <div class="order-summary mt-4" style="width: 90%; height: 80%">
-      <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
-        <div class="card-body" id="ct">
-          <b>
-            <div class="container px-3">
-              <div class="row item-row align-items-center px-1">
-                <div class="col-5 text-center">{{ item.produk }}</div>
-                <div class="col-4 text-center">{{ item.quantity }}</div>
-                <div class="col-3 text-center">
-                  <button @click="hapusitem(index)" class="btn btn-trash" aria-label="Delete item">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
+    <div class="cart ps-5 rounded-5" :style="{ right: cartVisible ? '0%' : '-90%' }">
+      <div class="order-summary mt-4" style="width: 90%; height: 80%">
+        <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
+          <div class="card-body" id="ct">
+            <b>
+              <div class="container">
+                <div class="row item-row align-items-center px-1">
+                  <div class="col-5 text-center">{{ item.produk }}</div>
+                  <div class="col-4 text-center">{{ item.quantity }}</div>
+                  <div class="col-3 text-center">
+                    <button @click="hapusitem(index)" class="btn btn-trash" aria-label="Delete item">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </b>
+            </b>
+          </div>
         </div>
-      </div>
-      <div class="card-body text-start">
-        <hr />
-        <h5 class="card-title" style="font-family: inter">
-          TOTAL <span>: {{ totalbelanja }}</span>
-        </h5>
-        <button @click="tempatPesanan" class="btn chekout py-3 mt-3 rounded-5 order" id="or">
-          <h4><b>ORDER</b></h4>
-        </button>
+        <div class="card-body ">
+          <hr />
+          <h5 class="card-title" style="font-family: inter">
+            TOTAL <span>: {{ totalbelanja }}</span>
+          </h5>
+          <button @click="tempatPesanan" class="btn chekout py-3 mt-3 rounded-5 order" id="or">
+            <h4><b>ORDER</b></h4>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script setup>
@@ -129,21 +129,26 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.bg{
+
+::-webkit-scrollbar {
+  display: none;
+}
+.bg {
   background-image: url(~/assets/img/bgm2.png);
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
 }
 .cart {
   width: 30vw;
-  height: 100vh;
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 15%;
-  right: 0; 
+  right: 0;
+  
   background-color: white;
   padding: 10px;
   transition: right 0.3s;
 }
-
 
 #or {
   width: 100%;
@@ -153,9 +158,10 @@ onMounted(() => {
 @media (max-width: 520px) {
   .cart {
     text-align: center;
-    width: 100vw;
-    top: 20%;
+    width: 80vw;
+    top: 22%;
     font-size: 15px;
+    margin-right: 10%;
   }
   .img {
     display: none;
