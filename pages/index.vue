@@ -122,25 +122,33 @@ const tempatPesanan = async () => {
 const toggleCart = () => {
   cartVisible.value = !cartVisible.value;
 };
+  
+document.addEventListener("DOMContentLoaded", function() {
+  const cartIcon = document.querySelector(".cart-icon");
+  const cart = document.querySelector(".cart");
+
+  cartIcon.addEventListener("click", function() {
+    cart.classList.toggle("show");
+  });
+});
 
 onMounted(() => {
   getMenu();
 });
+  
 </script>
 
 <style scoped>
 
-::-webkit-scrollbar {
-  display: none;
-}
 .bg {
   background-image: url(~/assets/img/bgm2.png);
   -ms-overflow-style: none;  
   scrollbar-width: none; 
 }
+
 .cart {
   width: 30vw;
-  display: flex;
+  display: none;
   position: absolute;
   top: 15%;
   right: 0;
@@ -148,6 +156,10 @@ onMounted(() => {
   background-color: white;
   padding: 10px;
   transition: right 0.3s;
+}
+
+.cart.show {
+  display: flex; 
 }
 
 #or {
@@ -158,10 +170,10 @@ onMounted(() => {
 @media (max-width: 520px) {
   .cart {
     text-align: center;
-    width: 80vw;
+    width: 80vw; 
     top: 22%;
     font-size: 15px;
-    margin-right: 10%;
+    margin-right: 0;
   }
   .img {
     display: none;
@@ -170,4 +182,5 @@ onMounted(() => {
     background-color: #c78800;
   }
 }
+
 </style>
