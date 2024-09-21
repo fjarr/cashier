@@ -19,13 +19,11 @@
   </div>
 </nav>
 </div>
-<!--  -->
 </template>
 <style scoped>
 .navbar{
   font-family: inter;
   background-color: #c78800; 
-  width: 100vw;
   top: 0;
 }
 </style>
