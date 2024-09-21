@@ -30,11 +30,11 @@
         </div>
       </div>
     </div>
-    <div class="cart ps-5 rounded-5" :style="{ right: cartVisible ? '0%' : '-90%' }">
+    <div class="cart" :class="{ hidden: !cartVisible }">
       <div class="order-summary mt-4" style="width: 90%; height: 80%">
-        <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
-          <div class="card-body" id="ct">
-            <b>
+        <div class="scrollable-container">
+          <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
+            <div class="card-body">
               <div class="container">
                 <div class="row item-row align-items-center px-1">
                   <div class="col-5 text-center">{{ item.produk }}</div>
@@ -46,10 +46,10 @@
                   </div>
                 </div>
               </div>
-            </b>
+            </div>
           </div>
         </div>
-        <div class="card-body ">
+        <div class="card-body">
           <hr />
           <h5 class="card-title" style="font-family: inter">
             TOTAL <span>: {{ totalbelanja }}</span>
@@ -122,24 +122,13 @@ const tempatPesanan = async () => {
 const toggleCart = () => {
   cartVisible.value = !cartVisible.value;
 };
-  
-document.addEventListener("DOMContentLoaded", function() {
-  const cartIcon = document.querySelector(".cart-icon");
-  const cart = document.querySelector(".cart");
-
-  cartIcon.addEventListener("click", function() {
-    cart.classList.toggle("show");
-  });
-});
 
 onMounted(() => {
   getMenu();
 });
-  
 </script>
 
 <style scoped>
-
 .bg {
   background-image: url(~/assets/img/bgm2.png);
   -ms-overflow-style: none;  
@@ -148,39 +137,43 @@ onMounted(() => {
 
 .cart {
   width: 30vw;
-  display: none;
-  position: absolute;
-  top: 15%;
-  right: 0;
-  
+  display: flex;
+  position: fixed;
+  top: 20%; 
+  right: 0; 
+  padding: 20px;
   background-color: white;
-  padding: 10px;
+  border-radius: 15px; 
   transition: right 0.3s;
+  z-index: 1000; 
 }
 
-.cart.show {
-  display: flex; 
+.cart.hidden {
+  display: none; 
+}
+
+.scrollable-container {
+  max-height: 300px; 
+  overflow-y: auto;
 }
 
 #or {
   width: 100%;
   background-color: #c78800;
+  text-align: center;
+  border-radius: 5px; 
 }
 
 @media (max-width: 520px) {
   .cart {
     text-align: center;
-    width: 80vw; 
+    width: 80vw;
     top: 22%;
-    font-size: 15px;
-    margin-right: 0;
+    font-size: 1rem;
+    margin-right: auto;
   }
   .img {
     display: none;
   }
-  #or {
-    background-color: #c78800;
-  }
 }
-
 </style>
