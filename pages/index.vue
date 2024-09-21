@@ -131,8 +131,6 @@ onMounted(() => {
 <style scoped>
 .bg {
   background-image: url(~/assets/img/bgm2.png);
-  -ms-overflow-style: none;  
-  scrollbar-width: none; 
 }
 
 .cart {
