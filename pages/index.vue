@@ -4,7 +4,7 @@
       <div class="row mt-1">
         <div class="col-12 col-lg-8 col-md-8 col-sm-12 my-4">
           <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-4" id="ic">
-            <i @click="toggleCart" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
+            <i @click="Tkeranjang" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
             <input v-model="keyword" class="form-control rounded-pill" type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" />
           </form>
           <div class="row">
@@ -119,7 +119,7 @@ const tempatPesanan = async () => {
   }
 };
 
-const toggleCart = () => {
+const Tkeranjang = () => {
   cartVisible.value = !cartVisible.value;
 };
 
