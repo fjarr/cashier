@@ -35,13 +35,14 @@ const Login = async () => {
     email: email.value,
     password: password.value,
   });
-  if (data) {
+
+  if (error) {
+    alert('Password atau email Anda salah');
+  } else {
     navigateTo('/');
-  } else console.error();
-  {
-    alert('password atau email anda salah');
   }
 };
+
 </script>
 
 <style scoped>
