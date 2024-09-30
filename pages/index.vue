@@ -7,6 +7,7 @@
             <i @click="Tkeranjang" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
             <input v-model="keyword" class="form-control rounded-pill" type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" />
           </form>
+          <div v-if="loading">Loading...</div>
           <div class="row">
             <div class="col-12 col-lg-4 col-md-6 col-sm-12 mb-4" v-for="(menu, i) in Menu" :key="i">
               <div class="card shadow rounded-4">
@@ -31,7 +32,7 @@
       </div>
     </div>
     <div class="cart" :class="{ hidden: !cartVisible }">
-      <div class="order-summary mt-4" style="width: 90%; height: 80%">
+      <div class="order-summary mt-4" style="width: 90%; height: auto">
         <div class="scrollable-container">
           <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
             <div class="card-body">
@@ -49,14 +50,25 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="cb">
           <hr />
-          <h5 class="card-title" style="font-family: inter">
-            TOTAL <span>: {{ totalbelanja }}</span>
-          </h5>
-          <button @click="tempatPesanan" class="btn chekout py-3 mt-3 rounded-5 order" id="or">
-            <h4><b>ORDER</b></h4>
-          </button>
+          <div class="row text-center">
+            <div class="col" id="2">
+              <h5 class="card-title">
+                ITEMS <span>: {{ orderItems.length }}</span>
+              </h5>
+            </div>
+            <div class="col">
+              <h5 class="card-title">
+                TOTAL <span>: {{ totalbelanja }}</span>
+              </h5>
+            </div>
+            <div class="col">
+              <button @click="tempatPesanan" class="btn chekout rounded-5 order" id="or">
+                <h4><b>ORDER</b></h4>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -76,10 +88,17 @@ const orderItems = ref([]);
 const totalbelanja = ref(0);
 const keyword = ref('');
 const cartVisible = ref(false);
+const loading = ref(false);
 
 const getMenu = async () => {
+  loading.value = true;
   const { data, error } = await supabase.from('menu').select('*').ilike('produk', `%${keyword.value}%`);
-  if (data) Menu.value = data;
+  loading.value = false;
+  if (data) {
+    Menu.value = data;
+  } else {
+    alert('Error fetching menu items');
+  }
 };
 
 const tambapesanan = (menu) => {
@@ -132,26 +151,25 @@ onMounted(() => {
 .bg {
   background-image: url(~/assets/img/bgm2.png);
 }
-
 .cart {
   width: 30vw;
   display: flex;
   position: fixed;
-  top: 20%; 
-  right: 0; 
+  top: 20%;
+  right: 0;
   padding: 20px;
   background-color: white;
-  border-radius: 15px; 
+  border-radius: 15px;
   transition: right 0.3s;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .cart.hidden {
-  display: none; 
+  display: none;
 }
 
 .scrollable-container {
-  max-height: 300px; 
+  max-height: 600px;
   overflow-y: auto;
 }
 
@@ -159,19 +177,38 @@ onMounted(() => {
   width: 100%;
   background-color: #c78800;
   text-align: center;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
-
 @media (max-width: 520px) {
   .cart {
+    width: 100vw;
     text-align: center;
-    width: 80vw;
-    top: 22%;
+    display: flex;
+    position: sticky;
+    bottom: 0%;
     font-size: 1rem;
-    margin-right: auto;
+    margin: auto;
+    padding: 2px;
   }
   .img {
     display: none;
+  }
+
+  .scrollable-container {
+    display: none;
+  }
+  h5 {
+    font-size: x-small;
+  }
+  h4 {
+    font-size: xx-small;
+  }
+  hr {
+    display: none;
+  }
+  #or {
+    width: 100px;
+    height: 30px;
   }
 }
 </style>
