@@ -187,7 +187,7 @@ onMounted(() => {
 }
 
 .scrollable-container {
-  max-height: 470px;
+  max-height: 420px;
   overflow-y: auto;
 }
 
