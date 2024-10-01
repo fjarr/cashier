@@ -173,7 +173,7 @@ onMounted(() => {
   width: 30vw;
   display: flex;
   position: fixed;
-  top: 20%;
+  top: 18%;
   right: 0;
   padding: 20px;
   background-color: white;
