@@ -5,14 +5,16 @@
         <div class="col-12 col-lg-8 col-md-8 col-sm-12 my-4">
           <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-4" id="ic">
             <i @click="Tkeranjang" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
-            <input v-model="keyword" class="form-control rounded-pill" type="search" placeholder="Mau Beli Apaa ...........?" aria-label="Search" />
+            <input v-model="keyword" class="form-control rounded-pill" type="search"
+              placeholder="Mau Beli Apaa ...........?" aria-label="Search" :disabled="loading" />
           </form>
           <div v-if="loading">Loading...</div>
           <div class="row">
             <div class="col-12 col-lg-4 col-md-6 col-sm-12 mb-4" v-for="(menu, i) in Menu" :key="i">
               <div class="card shadow rounded-4">
                 <div class="img p-2">
-                  <img :src="menu.cover" class="card-img-top rounded-3" alt="cover" style="height: 150px; object-fit: cover" />
+                  <img :src="menu.cover" class="card-img-top rounded-3" alt="cover"
+                    style="height: 150px; object-fit: cover" />
                 </div>
                 <div class="card-body">
                   <div class="d-flex justify-content-between mb-2">
@@ -21,7 +23,8 @@
                     </div>
                     <div>{{ menu.harga }}</div>
                   </div>
-                  <button @click="tambapesanan(menu)" class="btn rounded-4" style="background-color: #c78800; width: 95%">
+                  <button @click="tambapesanan(menu)" class="btn rounded-4"
+                    style="background-color: #c78800; width: 95%">
                     <i class="bi bi-cart mx-4"></i>
                   </button>
                 </div>
@@ -51,22 +54,36 @@
           </div>
         </div>
         <div class="card-body" id="cb">
-          <hr />
           <div class="row text-center">
-            <div class="col" id="2">
-              <h5 class="card-title">
+            <div class="col-12 d-none d-lg-block">
+              <h5 class="card-title"  id="tb">
                 ITEMS <span>: {{ orderItems.length }}</span>
               </h5>
-            </div>
-            <div class="col">
-              <h5 class="card-title">
+              <h5 class="card-title my-3">
                 TOTAL <span>: {{ totalbelanja }}</span>
               </h5>
+              <div class="text-center mt-2">
+                <button @click="tempatPesanan" class="btn chekout rounded-5 order py-4" id="or">
+                  <b>ORDER</b>
+                </button>
+              </div>
             </div>
-            <div class="col">
-              <button @click="tempatPesanan" class="btn chekout rounded-5 order" id="or">
-                <h4><b>ORDER</b></h4>
-              </button>
+            <div class="col-12 d-lg-none">
+              <div class="row text-center">
+                <div class="col">
+                  <h5 class="card-title">ITEMS <span> : <br> {{ orderItems.length }}</span></h5>
+                </div>
+                <div class="col">
+                  <h5 class="card-title">TOTAL <span>: <br>{{ totalbelanja }}</span></h5>
+                </div>
+                <div class="col">
+                  <div class="co">
+                    <button @click="tempatPesanan" class="btn chekout rounded-5 order" id="or">
+                      <b>ORDER</b>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,6 +168,7 @@ onMounted(() => {
 .bg {
   background-image: url(~/assets/img/bgm2.png);
 }
+
 .cart {
   width: 30vw;
   display: flex;
@@ -169,7 +187,7 @@ onMounted(() => {
 }
 
 .scrollable-container {
-  max-height: 600px;
+  max-height: 490px;
   overflow-y: auto;
 }
 
@@ -178,6 +196,10 @@ onMounted(() => {
   background-color: #c78800;
   text-align: center;
   border-radius: 5px;
+}
+
+#tb {
+  display: none;
 }
 @media (max-width: 520px) {
   .cart {
@@ -190,6 +212,7 @@ onMounted(() => {
     margin: auto;
     padding: 2px;
   }
+
   .img {
     display: none;
   }
@@ -197,18 +220,21 @@ onMounted(() => {
   .scrollable-container {
     display: none;
   }
+
   h5 {
     font-size: x-small;
   }
-  h4 {
-    font-size: xx-small;
+
+  b {
+    font-size: small;
   }
-  hr {
-    display: none;
+  .co{
+    margin-bottom: 20px;
+    margin-top: none;
   }
   #or {
-    width: 100px;
-    height: 30px;
+    width: 80%;
+    height: 100%;
   }
 }
 </style>
