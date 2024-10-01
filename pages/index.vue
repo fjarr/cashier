@@ -176,7 +176,7 @@ onMounted(() => {
   top: 19%;
   right: 0;
   padding: 20px;
-  background-color: white;
+  background-color: none;
   border-radius: 15px;
   transition: right 0.3s;
   z-index: 1000;
@@ -203,6 +203,7 @@ onMounted(() => {
 }
 @media (max-width: 520px) {
   .cart {
+    background-color:white;
     width: 100vw;
     text-align: center;
     display: flex;
