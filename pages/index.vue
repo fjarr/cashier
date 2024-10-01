@@ -173,7 +173,7 @@ onMounted(() => {
   width: 30vw;
   display: flex;
   position: fixed;
-  top: 18%;
+  top: 19%;
   right: 0;
   padding: 20px;
   background-color: white;
@@ -187,7 +187,7 @@ onMounted(() => {
 }
 
 .scrollable-container {
-  max-height: 420px;
+  max-height: 380px;
   overflow-y: auto;
 }
 
