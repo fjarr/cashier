@@ -3,9 +3,8 @@
     <div class="container-fluid">
       <div class="row mt-1">
         <div class="col-12 col-lg-8 col-md-8 col-sm-12 my-4">
-          <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-4" id="ic">
-            <i @click="Tkeranjang" class="bi bi-cart-check me-2" id="c" style="font-size: 30px"></i>
-            <input v-model="keyword" class="form-control rounded-pill" type="search"
+          <form @submit.prevent="getMenu" class="d-flex mx-5 mb-4 px-5" id="ic">
+            <input v-model="keyword" class="form-control rounded-pill " type="search"
               placeholder="Mau Beli Apaa ...........?" aria-label="Search" :disabled="loading" />
           </form>
           <div v-if="loading">Loading...</div>
@@ -34,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div class="cart" :class="{ hidden: !cartVisible }">
+    <div class="cart">
       <div class="order-summary mt-4" style="width: 90%; height: auto">
         <div class="scrollable-container">
           <div v-for="(item, index) in orderItems" :key="index" class="card rounded-5 shadow mb-2">
@@ -70,10 +69,10 @@
             </div>
             <div class="col-12 d-lg-none">
               <div class="row text-center">
-                <div class="col">
+                <div class="col mt-2">
                   <h5 class="card-title">ITEMS <span> : <br> {{ orderItems.length }}</span></h5>
                 </div>
-                <div class="col">
+                <div class="col mt-2">
                   <h5 class="card-title">TOTAL <span>: <br>{{ totalbelanja }}</span></h5>
                 </div>
                 <div class="col">
@@ -155,10 +154,6 @@ const tempatPesanan = async () => {
   }
 };
 
-const Tkeranjang = () => {
-  cartVisible.value = !cartVisible.value;
-};
-
 onMounted(() => {
   getMenu();
 });
@@ -231,7 +226,7 @@ onMounted(() => {
   }
   .co{
     margin-bottom: 20px;
-    margin-top: none;
+
   }
   #or {
     width: 80%;
