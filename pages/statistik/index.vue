@@ -13,7 +13,7 @@
       </div>
       <div class="col-lg-5 mb-2">
         <div class="title-bulan mx-5">
-          <h2>BULANAN INI</h2>
+          <h2>BULAN INI</h2>
         </div>
         <div class="card rounded-5 mx-5">
           <div class="card-body">
