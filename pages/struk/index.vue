@@ -70,4 +70,9 @@ onMounted(() => {
     margin-top: 10%;
   }
 }
+@media print{
+  .btn{
+    display: none;
+  }
+}
 </style>
